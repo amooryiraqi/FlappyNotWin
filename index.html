@@ -13,7 +13,8 @@
       height: 100%;
       overflow: hidden;
       font-family: sans-serif;
-      touch-action: manipulation;
+      touch-action: none;
+      overscroll-behavior: none;
       background: black;
     }
     .game {
@@ -42,16 +43,12 @@
       top: 50%;
       left: 15vw;
       z-index: 2;
-      transform: translateY(-50%);
-      transition: transform 0.1s linear;
-      left: 15vw;
-      z-index: 2;
-      
+      transform: translateY(-50%) rotate(0deg);
       transition: transform 0.1s linear;
     }
     .pipe {
       position: absolute;
-      width: 10vw;
+      width: 12vw;
       max-width: 100px;
       background: url('pipe.png') repeat-y center center;
       background-size: 100% auto;
@@ -65,8 +62,8 @@
     }
     .scoreboard {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 2vw;
+      left: 2vw;
       color: white;
       font-size: 5vw;
       background: rgba(0, 0, 0, 0.5);
@@ -110,7 +107,7 @@
     let gameOverFlag = false;
 
     let x = player.offsetLeft;
-    let y = window.innerHeight / 2 - 40;
+    let y = window.innerHeight / 2 - player.offsetHeight / 2;
     let vy = 0;
     let gravity = 0.4;
     const thrust = -9;
@@ -137,8 +134,12 @@
       }
     });
 
-    game.addEventListener('touchstart', (e) => {
-      startGame();
+    game.addEventListener('touchstart', () => {
+      if (!started) startGame();
+      else {
+        vy = thrust;
+        gravityTimer = 0;
+      }
     });
 
     retryBtn.addEventListener('click', () => {
@@ -175,12 +176,12 @@
       y += vy;
 
       if (y < 0) y = 0;
-      if (y >= window.innerHeight - player.offsetHeight - 10) handleGameOver("You fell!");
+      if (y > window.innerHeight - player.offsetHeight) handleGameOver("You fell!");
 
       player.style.top = y + 'px';
       player.style.left = x + 'px';
       let angle = Math.max(-25, Math.min(90, vy * 3));
-      player.style.transform = `rotate(${angle}deg)`;
+      player.style.transform = `translateY(-50%) rotate(${angle}deg)`;
     }
 
     function checkCollision(a, b) {
