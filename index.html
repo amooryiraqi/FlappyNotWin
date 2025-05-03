@@ -31,18 +31,11 @@
       from { background-position-x: 0; }
       to { background-position-x: -1000px; }
     }
-    .player {
-      position: absolute;
-      width: 15vw;
-      height: 15vw;
-      max-width: 80px;
-      max-height: 80px;
-      background: url('flappy.png') no-repeat center center;
-      background-size: contain;
-      top: 40%;
+    $1top: 50%;
+      transform: translateY(-50%) rotate(0deg);
       left: 15vw;
       z-index: 2;
-      transform: rotate(0deg);
+      
       transition: transform 0.1s linear;
     }
     .pipe {
