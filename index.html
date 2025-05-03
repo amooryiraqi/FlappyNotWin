@@ -31,8 +31,19 @@
       from { background-position-x: 0; }
       to { background-position-x: -1000px; }
     }
-    $1top: 50%;
-      transform: translateY(-50%) rotate(0deg);
+    .player {
+      position: absolute;
+      width: 15vw;
+      height: 15vw;
+      max-width: 80px;
+      max-height: 80px;
+      background: url('flappy.png') no-repeat center center;
+      background-size: contain;
+      top: 50%;
+      left: 15vw;
+      z-index: 2;
+      transform: translateY(-50%);
+      transition: transform 0.1s linear;
       left: 15vw;
       z-index: 2;
       
@@ -99,7 +110,7 @@
     let gameOverFlag = false;
 
     let x = player.offsetLeft;
-    let y = window.innerHeight / 2 - player.offsetHeight / 2;
+    let y = window.innerHeight / 2 - 40;
     let vy = 0;
     let gravity = 0.4;
     const thrust = -9;
@@ -164,7 +175,7 @@
       y += vy;
 
       if (y < 0) y = 0;
-      if (y > window.innerHeight - player.offsetHeight) handleGameOver("You fell!");
+      if (y >= window.innerHeight - player.offsetHeight - 10) handleGameOver("You fell!");
 
       player.style.top = y + 'px';
       player.style.left = x + 'px';
