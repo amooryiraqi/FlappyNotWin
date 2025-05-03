@@ -99,7 +99,7 @@
     let gameOverFlag = false;
 
     let x = player.offsetLeft;
-    let y = player.offsetTop;
+    let y = window.innerHeight / 2 - player.offsetHeight / 2;
     let vy = 0;
     let gravity = 0.4;
     const thrust = -9;
