@@ -87,6 +87,7 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      pointer-events: auto;
       z-index: 20;
       display: none;
     }
@@ -114,7 +115,7 @@
     let started = false;
     let gameOverFlag = false;
 
-    let x = Math.max(window.innerWidth * 0.1, 20);
+    let x = window.innerWidth * 0.05;
     let y = window.innerHeight / 2 - player.offsetHeight / 2;
     let vy = 0;
     let gravity = 0.4;
@@ -123,7 +124,7 @@
 
     const pipes = [];
     let frame = 0;
-    const pipeSpeed = 5;
+    const pipeSpeed = window.innerWidth < 768 ? 2.5 : 5;
     let bgX1 = 0;
     let bgX2 = window.innerWidth;
 
@@ -144,7 +145,7 @@
 });
 
     game.addEventListener('touchstart', (e) => {
-  e.preventDefault();
+  
   if (!started) startGame();
   else {
     vy = thrust;
