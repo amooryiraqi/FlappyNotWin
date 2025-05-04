@@ -98,7 +98,7 @@
     <div class="bg" id="bg1"></div>
     <div class="bg" id="bg2"></div>
     <div class="scoreboard" id="scoreboard">Tap to start</div>
-    <div class="player" id="player"></div>
+    <div class="player" id="player" style="display: none;"></div>
     <button class="retry-button" id="retryBtn">Retry</button>
   </div>
 
@@ -116,7 +116,7 @@
     let gameOverFlag = false;
 
     let x = window.innerWidth * 0.05;
-    let y = window.innerHeight / 2 - player.offsetHeight / 2;
+    let y = window.innerHeight * 0.4;
     let vy = 0;
     let gravity = 0.4;
     const thrust = -9;
@@ -263,6 +263,7 @@
 
     player.style.left = x + 'px';
     player.style.top = y + 'px';
+    player.style.display = 'block';
   </script>
 </body>
 </html>
