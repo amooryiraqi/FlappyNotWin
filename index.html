@@ -44,10 +44,10 @@
       max-height: 80px;
       background: url('flappy.png') no-repeat center center;
       background-size: contain;
-      top: 50%;
+      top: 40%;
       left: 15vw;
       z-index: 2;
-      transform: translateY(-50%) rotate(0deg);
+      transition: transform 0.1s linear;
       transition: transform 0.1s linear;
     }
     .pipe {
@@ -192,7 +192,7 @@
       player.style.top = y + 'px';
       player.style.left = x + 'px';
       let angle = Math.max(-25, Math.min(90, vy * 3));
-      player.style.transform = `translateY(-50%) rotate(${angle}deg)`;
+      player.style.transform = `rotate(${angle}deg)`;
     }
 
     function checkCollision(a, b) {
