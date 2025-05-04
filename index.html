@@ -115,8 +115,8 @@
     let x = window.innerWidth * 0.05;
     let y = window.innerHeight * 0.4;
     let vy = 0;
-    let gravity = window.innerWidth < 768 ? 0.25 : 0.4;
-    const thrust = window.innerWidth < 768 ? -7 : -9;
+    let gravity = window.innerWidth < 768 ? 0.18 : 0.3;
+    const thrust = window.innerWidth < 768 ? -8.5 : -10;
     let gravityTimer = 0;
 
     const pipes = [];
@@ -251,7 +251,7 @@
       updatePipes();
       updateBackground();
 
-      if (frame % 120 === 0) spawnPipe();
+      if (frame % 160 === 0) spawnPipe();
 
       scoreboard.textContent = `Score: ${score} | High Score: ${highScore}`;
       frame++;
