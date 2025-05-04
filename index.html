@@ -38,16 +38,13 @@
     }
     .player {
       position: absolute;
-      width: 15vw;
-      height: 15vw;
-      max-width: 80px;
-      max-height: 80px;
+      width: 60px;
+      height: 60px;
       background: url('flappy.png') no-repeat center center;
       background-size: contain;
-      top: 40%;
-      left: 15vw;
+      top: 200px;
+      left: 50px;
       z-index: 2;
-      transition: transform 0.1s linear;
       transition: transform 0.1s linear;
     }
     .pipe {
@@ -261,8 +258,8 @@
       requestAnimationFrame(gameLoop);
     }
 
-    player.style.left = x + 'px';
-    player.style.top = y + 'px';
+    player.style.left = '50px';
+    player.style.top = '200px';
   </script>
 </body>
 </html>
