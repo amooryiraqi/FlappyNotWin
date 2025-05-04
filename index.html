@@ -179,7 +179,7 @@
 
     function updatePlayer() {
       gravityTimer++;
-      gravity = 0.4 + 0.01 * gravityTimer;
+      gravity = (window.innerWidth < 768 ? 0.09 : 0.15) + 0.005 * gravityTimer;
       vy += gravity;
       y += vy;
 
