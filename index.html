@@ -88,9 +88,56 @@
       z-index: 20;
       display: none;
     }
+      #loading-screen {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .logo {
+      width: 40vw;
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .loading-bar-container {
+      width: 80%;
+      max-width: 400px;
+      height: 10px;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      transition: width 0.3s;
+    }
+    .present-text {
+      font-size: 20px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+  <div id="loading-screen">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <p id="loading-text">Loading 0%</p>
+    <div class="loading-bar-container">
+      <div id="loading-bar" class="loading-bar"></div>
+    </div>
+    <div id="presentText" class="present-text">PRESENT</div>
+  </div>
   <div class="game" id="game">
     <div class="bg" id="bg1"></div>
     <div class="bg" id="bg2"></div>
@@ -260,6 +307,32 @@
 
     player.style.left = '50px';
     player.style.top = '200px';
+
+    const loadingText = document.getElementById('loading-text');
+    const loadingBar = document.getElementById('loading-bar');
+    const presentText = document.getElementById('presentText');
+    const assetsToLoad = ['background.jpg', 'flappy.png', 'pipe.png', 'logo.png'];
+    let loadedCount = 0;
+
+    function updateLoading() {
+      loadedCount++;
+      const percent = Math.floor((loadedCount / assetsToLoad.length) * 100);
+      loadingText.textContent = `Loading ${percent}%`;
+      loadingBar.style.width = `${percent}%`;
+      if (percent === 100) {
+        presentText.style.opacity = 1;
+        setTimeout(() => {
+          document.getElementById('loading-screen').style.display = 'none';
+        }, 1500);
+      }
+    }
+
+    assetsToLoad.forEach(src => {
+      const img = new Image();
+      img.onload = updateLoading;
+      img.onerror = updateLoading;
+      img.src = src;
+    });
   </script>
 </body>
 </html>
